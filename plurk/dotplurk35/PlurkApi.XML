@@ -1,0 +1,1082 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PlurkApi</name>
+    </assembly>
+    <members>
+        <member name="T:PlurkApi.alert">
+            <summary>
+             The data returned by getActive and getHistory can be of following nature: 
+            
+             Friendship request:
+             {"type": "friendship_request", "from_user": {"nick_name": ...}, "posted": ...}
+             
+             Friendship pending:
+             {"type": "friendship_pending", "to_user": {"nick_name": ...}, "posted": ...}
+             
+             New fan notification: (does not require actions from the user)
+            {"type": "new_fan", "new_fan": {"nick_name": ...}, "posted": ...}
+             
+            Friendship accepted notification: (does not require actions from the user)
+            {"type": "friendship_accepted", "friend_info": {"nick_name": ...}, "posted": ...}
+            
+            New friend notification: (does not require actions from the user)
+            {"type": "new_friend", "new_friend": {"nick_name": ...}, "posted": ...} 
+            </summary>
+        </member>
+        <member name="M:PlurkApi.alert.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.alert"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.alert.type">
+            <summary>
+            alert type: friendship_request, friendship_pending, new_fan, friendship_accepted, new_friend
+            </summary>
+        </member>
+        <member name="P:PlurkApi.alert.posted">
+            <summary>
+            posted time
+            </summary>
+        </member>
+        <member name="P:PlurkApi.alert.user_info">
+            <summary>
+            user information about the alert 
+            </summary>
+        </member>
+        <member name="T:PlurkApi.user_info">
+            <summary>
+            user information
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.display_name">
+            <summary>
+            The non-unique display name of the user, for example Amir S. Only set if it's non empty.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.relationship">
+            <summary>
+            Can be not_saying, single, married, divorced, engaged, in_relationship, complicated, widowed, open_relationship
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.page_title">
+            <summary>
+            The profile title of the user.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.nick_name">
+            <summary>
+            The unique nick_name of the user, for example amix
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.location">
+            <summary>
+            The user's location, a text string, for example Aarhus Denmark.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.full_name">
+            <summary>
+            The user's full name, like Amir Salihefendic.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.karma">
+            <summary>
+            User's karma value.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.avatar">
+            <summary>
+            Specifies what the latest avatar (profile picture) version is.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.has_profile_image">
+            <summary>
+            If 1 then the user has a profile picture, otherwise the user should use the default.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.gender">
+            <summary>
+            1 is male, 0 is female.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.recruited">
+            <summary>
+            How many friends has the user recruited.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.id">
+            <summary>
+            The unique user id.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.user_info.date_of_birth">
+            <summary>
+            The user's birthday.
+            </summary>
+        </member>
+        <member name="T:PlurkApi.ownProfile">
+            <summary>
+            my profile
+            </summary>
+        </member>
+        <member name="M:PlurkApi.ownProfile.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.ownProfile"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.ownProfile.fans_count">
+            <summary>
+            the number of my fans
+            </summary>
+        </member>
+        <member name="P:PlurkApi.ownProfile.friends_count">
+            <summary>
+            the number of my friends
+            </summary>        
+        </member>
+        <member name="P:PlurkApi.ownProfile.alerts_count">
+            <summary>
+            number of alerts that are unread
+            </summary>
+        </member>
+        <member name="P:PlurkApi.ownProfile.unread_count">
+            <summary>
+            number of plurks that are unread
+            </summary>
+        </member>
+        <member name="T:PlurkApi.response">
+            <summary>
+            the reponse of a plurk messgae
+            </summary>
+        </member>
+        <member name="M:PlurkApi.response.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.response"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.response.lang">
+            <summary>
+            the language of the plurk message
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.content_raw">
+            <summary>
+            The raw content as user entered it, useful when editing plurks or if you want to format the content differently. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.qualifier">
+            <summary>
+            The English qualifier, can be "says", show all: 
+            loves likes shares gives hates wants has will asks wishes was feels thinks says is : freestyle hopes needs wonders
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.content">
+            <summary>
+            The formatted content, emoticons and images will be turned into IMG tags etc. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.user_id">
+            <summary>
+            the user id of the responser
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.id">
+            <summary>
+            the user id of the responser
+            </summary>
+        </member>
+        <member name="P:PlurkApi.response.posted">
+            <summary>
+            the responsed time
+            </summary>
+        </member>
+        <member name="T:PlurkApi.responses">
+            <summary>
+            a collection responses 
+            </summary>
+        </member>
+        <member name="M:PlurkApi.WebUtil.GetPage(System.String,System.String,System.Net.Cookie@,System.Boolean)">
+            <summary>
+            Make a http POST or GET request
+            </summary>
+            <param name="url">Url</param>
+            <param name="methhod"></param>
+            <param name="cookie">Get or set the cookie used in the request or response</param>
+            <param name="waitContent">If you don't want wait the http content. Set this false, to get only the cookie for example.</param>
+            <returns>Request response. If "" a error ocurred or you set the waitContent with false</returns>
+        </member>
+        <member name="T:PlurkApi.publicProfile">
+            <summary>
+            the public profile of any plurk user
+            </summary>
+        </member>
+        <member name="M:PlurkApi.publicProfile.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.publicProfile"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.publicProfile.fans_count">
+            <summary>
+            the number of user's fans
+            </summary>
+        </member>
+        <member name="P:PlurkApi.publicProfile.friends_count">
+            <summary>
+            the number of user's friends
+            </summary>
+        </member>
+        <member name="P:PlurkApi.publicProfile.is_fan">
+            <summary>
+            null if not logged in
+            </summary>
+        </member>
+        <member name="P:PlurkApi.publicProfile.are_friends">
+            <summary>
+            null if not logged in
+            </summary>
+        </member>
+        <member name="P:PlurkApi.publicProfile.is_following">
+            <summary>
+            null if not logged in
+            </summary>
+        </member>
+        <member name="T:PlurkApi.PlurkApi">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.PlurkApi"/> class.
+            </summary>
+            <param name="apiKey">The API key.</param>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.register(System.String,System.String,System.String,System.String,System.DateTime,System.String)">
+            <summary>
+            Register a new Plurk account. Should be HTTPS.
+            </summary>
+            <param name="nick_name">The user's nick name. Should be longer than 3 characters. Should be ASCII. Nick name can only contain letters, numbers and _.</param>
+            <param name="full_name">Can't be empty.</param>
+            <param name="Password">Should be longer than 3 characters.</param>
+            <param name="gender">Should be male or female.</param>
+            <param name="date_of_birth">Should be YYYY-MM-DD, example 1985-05-13.</param>
+            <param name="email">Must be a valid email.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.login(System.String,System.String)">
+            <summary>
+            Login an already created user. Login creates a session cookie, which can be used to access the other methods. On success it returns the data returned by /API/Profile/getOwnProfile. Should be HTTPS.
+            </summary>
+            <param name="Username">The user's nick name or email.</param>
+            <param name="Password">The user's password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.logout">
+            <summary>
+            Logouts this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.update(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Update a user's information (such as email, password or privacy). Should be HTTPS.
+            </summary>
+            <param name="current_password">User's current password.</param>
+            <param name="values">
+              Key    :    Value
+            full_name: Change full name.
+            new_password: Change password.
+            email: Change email.
+            display_name: User's display name, can be empty and full unicode. Must be shorter than 15 characters.
+            privacy: User's privacy settings. The option can be world (whole world can view the profile), only_friends (only friends can view the profile) or only_me (only the user can view own plurks).
+            date_of_birth: Should be YYYY-MM-DD, example 1985-05-13.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.UpdatePicture(System.String)">
+            <summary>
+            Update a user's profile picture. You can read more about how to render an avatar via user data. You should do a multipart/form-data POST request to /API/Users/updatePicture. The picture will be scaled down to 3 versions: big, medium and small. The optimal size of profile_image should be 195x195 pixels. 
+            (NotImplementedException)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getOwnProfile">
+            <summary>
+            Returns data that's private for the currently logged in user. This can be used to construct a profile and render a timeline of the latest plurks. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getPublicProfile(System.String)">
+            <summary>
+            Fetches public information such as a user's public plurks and basic information. Fetches also if the current logged in user is following the user, are friends with or is a fan. 
+            </summary>
+            <param name="UseridOrNickname">The user_id of the public profile. Can be integer (like 34) or nick name (like amix).</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getPlurks(System.DateTime,System.Int32)">
+            <summary>
+            You should use this call to find out if there any new plurks posted to the user's timeline. It's much more efficient than doing it with /API/Timeline/getPlurks, so please use it :) 
+            </summary>
+            <param name="offset">Return plurks newer than offset, formatted as 2009-6-20T21:55:34. </param>
+            <param name="limit"></param>
+            <returns>The max number of plurks to be returned (default 50).</returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getUnreadCount">
+            <summary>
+            Use this call to find out if there are unread plurks on a user's timeline. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getPlurk(System.Int32)">
+            <summary>
+            Gets the plurk.
+            </summary>
+            <param name="plurk_id">The unique id of the plurk. Should be passed as a number, and not base 36 encoded. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getPlurks(System.DateTime,System.Int32,System.String)">
+            <summary>
+            Gets the plurks.
+            </summary>
+            <param name="offset">Return plurks older than offset, formatted as 2009-6-20T21:55:34.</param>
+            <param name="limit">How many plurks should be returned? Default is 20.</param>
+            <param name="filter">Can be only_user, only_responded or only_private.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getUnreadPlurks(System.DateTime,System.Int32)">
+            <summary>
+            Gets the unread plurks.
+            </summary>
+            <param name="offset">Return plurks older than offset, formatted as 2009-6-20T21:55:34. </param>
+            <param name="limit">Limit the number of plurks that is retunred. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.plurkAdd(PlurkApi.lang,PlurkApi.Qualifier,System.String,System.String,System.String)">
+            <summary>
+            Plurks the add.
+            </summary>
+            <param name="lang">The Plurk's text. </param>
+            <param name="qualifier">The Plurk's qualifier</param>
+            <param name="content">The content.</param>
+            <param name="no_comments">
+             If set to 0, then everyone can respond to this plurk.
+             If set to 1, then responses are disabled for this plurk.
+             If set to 2, then only friends can respond to this plurk. 
+            </param>
+            <param name="limited_to">
+             Limit the plurk only to some users (also known as private plurking). limited_to should be a JSON list of friend ids, e.g. limited_to of [3,4,66,34] will only be plurked to these user ids.
+             1. string.empty => no limitation
+             2. only-friends => only friends can see
+             3. xxx|yyy|zzz => only xxx, yyy and zzz can see
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.plurkDelete(System.Int32)">
+            <summary>
+            Plurks the delete.
+            </summary>
+            <param name="plurk_id">The id of the plurk. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.plurkEdit(System.Int32,System.String)">
+            <summary>
+            Plurks the edit.
+            </summary>
+            <param name="plurk_id">The id of the plurk. </param>
+            <param name="content">The content of plurk. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.mutePlurks(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Mutes the plurks.
+            </summary>
+            <param name="ids">The plurk ids, formated as JSON, e.g. [342,23242,2323]</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.unmutePlurks(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Unmutes the plurks.
+            </summary>
+            <param name="ids">The plurk ids, formated as JSON, e.g. [342,23242,2323]</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.markAsRead(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Marks as read.
+            </summary>
+            <param name="ids">The plurk ids, formated as JSON, e.g. [342,23242,2323]</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.uploadPicture">
+            <summary>
+             To upload a picture to Plurk, you should do a multipart/form-data POST request to /API/Timeline/uploadPicture. This will add the picture to Plurk's CDN network and return a image link that you can add to /API/Timeline/plurkAdd Plurk will automatically scale down the image and create a thumbnail. 
+             (NotImplementedException)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getResponses(System.Int32,System.Int32)">
+            <summary>
+            Fetches responses for plurk with plurk_id and some basic info about the users. 
+            </summary>
+            <param name="plurk_id">The plurk that the responses should be added to. </param>
+            <param name="from_response">Only fetch responses from an offset, should be 5, 10 or 15. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllResponses(System.Int32)">
+            <summary>
+            Gets all responses.
+            </summary>
+            <param name="plurk_id">The plurk_id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.responseAdd(PlurkApi.Qualifier,System.String,System.Int32)">
+            <summary>
+            Adds a responses to plurk_id. Language is inherited from the plurk. 
+            </summary>
+            <param name="qualifier">The Plurk's qualifier,</param>
+            <param name="content">The response's text. </param>
+            <param name="plurk_id">The plurk_id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.responseDelete(System.Int32,System.Int32)">
+            <summary>
+            Deletes a response. A user can delete own responses or responses that are posted to own plurks. 
+            </summary>
+            <param name="response_id">The plurk that the responses should be added to. </param>
+            <param name="plurk_id">The plurk that the response belongs to. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFriends(System.Int32,System.Int32)">
+            <summary>
+            Returns user_id's friend list in chucks of 10 friends at a time. 
+            </summary>
+            <param name="user_id">The user_id.</param>
+            <param name="offset">The offset, can be 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFriends(System.Int32)">
+            <summary>
+            Returns user_id's friend list in chucks of 10 friends at a time. (requires login)
+            </summary>
+            <param name="offset">The offset, can be 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllFriends(System.Int32)">
+            <summary>
+            Gets all friends.
+            </summary>
+            <param name="user_id">The user_id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllFriends">
+            <summary>
+            Gets all friends. (requires login)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFans(System.Int32,System.Int32)">
+            <summary>
+            Returns user_id's fans list in chucks of 10 fans at a time. 
+            </summary>
+            <param name="user_id">The user_id.</param>
+            <param name="offset">The offset, can be 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFans(System.Int32)">
+            <summary>
+            Gets the fans.  (requires login)
+            </summary>
+            <param name="offset">The offset, can be 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllFans(System.Int32)">
+            <summary>
+            Gets all fans.
+            </summary>
+            <param name="user_id">The user_id.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllFans">
+            <summary>
+            Gets all fans.  (requires login)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFollowings(System.Int32)">
+            <summary>
+            Returns users that the current logged in user follows as fan - in chucks of 10 fans at a time. 
+            </summary>
+            <param name="offset">The offset, can be 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllFollowings">
+            <summary>
+            Gets all followings.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.becomeFriend(System.Int32)">
+            <summary>
+            Create a friend request to friend_id. User with friend_id has to accept a friendship. 
+            </summary>
+            <param name="friend_id">The ID of the user you want to befriend. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.removeFriend(System.Int32)">
+            <summary>
+            Remove friend with ID friend_id. friend_id won't be notified. 
+            </summary>
+            <param name="friend_id">The ID of the user you want to remove </param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:PlurkApi.PlurkApi.becomeFan(System.Int32)" -->
+        <member name="M:PlurkApi.PlurkApi.setFollowing(System.Int32,System.Boolean)">
+            <summary>
+            Update following of user_id. A user can befriend someone, but can unfollow them. This request is also used to stop following someone as a fan. 
+            </summary>
+            <param name="user_id">The ID of the user you want to follow/unfollow </param>
+            <param name="follow">
+             true if the user should be followed, 
+             false if the user should be unfollowed. 
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getCompletion">
+            <summary>
+            Returns a JSON object of the logged in users friends (nick name and full name). This information can be used to construct auto-completion for private plurking. Notice that a friend list can be big, depending on how many friends a user has, so this list should be lazy-loaded in your application.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getActive">
+            <summary>
+            Return a JSON list of current active alerts.    
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getFriendRequests">
+            <summary>
+            Gets the Friendship request.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getHistory">
+            <summary>
+            Return a JSON list of past 30 alerts. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.addAsFan(System.Int32)">
+            <summary>
+            Accept user_id as fan. 
+            </summary>
+            <param name="user_id">The user_id that has asked for friendship. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.addAllAsFan">
+            <summary>
+            Accept all friendship requests as fans. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.addAllAsFriends">
+            <summary>
+            Accept all friendship requests as friends. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.addAsFriend(System.Int32)">
+            <summary>
+            Accept user_id as friend. 
+            </summary>
+            <param name="user_id">The user_id that has asked for friendship. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.denyFriendship(System.Int32)">
+            <summary>
+            Deny friendship to user_id. 
+            </summary>
+            <param name="user_id">The user_id that has asked for friendship. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.removeNotification(System.Int32)">
+            <summary>
+            Remove notification to user with id user_id. 
+            </summary>
+            <param name="user_id">The user_id that the current user has requested friendship for. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.plurkSearch(System.String)">
+            <summary>
+            Returns the latest 20 plurks on a search term. 
+            </summary>
+            <param name="query">The query after Plurks. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.plurkSearch(System.String,System.Int32)">
+            <summary>
+            Returns the latest 20 plurks on a search term. 
+            </summary>
+            <param name="query">The query after Plurks. </param>
+            <param name="plurk_id">
+             A plurk_id of the oldest Plurk in the last search result.
+             -1 => no limitation
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.userSearch(System.String,System.Int32)">
+            <summary>
+            Returns 10 users that match query, users are sorted by karma. 
+            </summary>
+            <param name="query">The query after users. </param>
+            <param name="offset">Page offset, like 10, 20, 30 etc. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.allUserSearch(System.String)">
+            <summary>
+            Alls the user search. (not recommended to use)
+            </summary>
+            <param name="query">The query after users. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getEmotions">
+            <summary>
+            Emoticons are a big part of Plurk since they make it easy to express feelings (NotImplementedException)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getBlocks(System.Int32)">
+            <summary>
+            Gets the blocks.
+            </summary>
+            <param name="offset">What page should be shown, e.g. 0, 10, 20. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getAllBlocks">
+            <summary>
+            Gets all blocks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.block(System.Int32)">
+            <summary>
+            Blocks the specified user_id.
+            </summary>
+            <param name="user_id">The id of the user that should be blocked. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.unblock(System.Int32)">
+            <summary>
+            Unblocks the specified user_id.
+            </summary>
+            <param name="user_id">The id of the user that should be unblocked. </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getCliques">
+            <summary>
+            Gets the cliques.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.getClique(System.String)">
+            <summary>
+            Gets the clique.
+            </summary>
+            <param name="clique_name">The name of the new clique </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.createClique(System.String)">
+            <summary>
+            Creates the clique.
+            </summary>
+            <param name="clique_name">The name of the new clique </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.renameClique(System.String,System.String)">
+            <summary>
+            Renames the clique.
+            </summary>
+            <param name="clique_name">The name of the clique to rename </param>
+            <param name="new_name">The name of the new clique </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.addClique(System.String,System.Int32)">
+            <summary>
+            Adds the clique.
+            </summary>
+            <param name="clique_name">The name of the clique </param>
+            <param name="user_id">The user to add to the clique </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.removeClique(System.String,System.Int32)">
+            <summary>
+            Removes the clique.
+            </summary>
+            <param name="clique_name">The name of the clique </param>
+            <param name="user_id">The user to remove from the clique </param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.GetUserID(System.String)">
+            <summary>
+            get the user id by nickname
+            </summary>
+            <param name="UseridOrNickname">The userid or nickname.</param>
+            <returns></returns>        
+        </member>
+        <member name="M:PlurkApi.PlurkApi.GetLimitedTo(System.String)">
+            <summary>
+            Gets the limited to.
+            </summary>
+            <param name="userIDs">The user I ds.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.GetPages(System.String)">
+            <summary>
+            Gets the pages.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PlurkApi.PlurkApi.GetVerb(PlurkApi.Qualifier)">
+            <summary>
+            get the verb of plurk qualifier
+            </summary>
+            <param name="qualifier"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.username">
+            <summary>
+            your plurk nickname
+            </summary>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.password">
+            <summary>
+            your plurk login password
+            </summary>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.uid">
+            <summary>
+            your plurk user id
+            </summary>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.isLogged">
+            <summary>
+            Gets or sets a value indicating whether this instance is logged.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.apiKey">
+            <summary>
+            Gets or sets the API key.
+            </summary>
+        </member>
+        <member name="P:PlurkApi.PlurkApi.userInfo">
+            <summary>
+            personal inforamtion
+            </summary>
+        </member>
+        <member name="T:PlurkApi.Qualifier">
+            <summary>
+            the verb of plurk message
+            </summary>
+        </member>
+        <member name="T:PlurkApi.unreadCount">
+            <summary>
+            a rough information of your plurk messages
+            </summary>
+        </member>
+        <member name="M:PlurkApi.unreadCount.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.unreadCount"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.unreadCount.all">
+            <summary>
+            all the number of plurk messages 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.unreadCount.my">
+            <summary>
+            the number of my posted plurk messages 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.unreadCount.private">
+            <summary>
+            the number of my private plurk messages 
+            </summary>        
+        </member>
+        <member name="P:PlurkApi.unreadCount.responded">
+            <summary>
+            the number of my responded plurk messages 
+            </summary>  
+        </member>
+        <member name="T:PlurkApi.plurk">
+            <summary>
+             a plurk message
+            </summary>
+        </member>
+        <member name="M:PlurkApi.plurk.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:PlurkApi.plurk"/> class.
+            </summary>
+            <param name="jsonString">The json string.</param>
+        </member>
+        <member name="P:PlurkApi.plurk.lang">
+            <summary>
+            the language of the plurk message
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.content_raw">
+            <summary>
+            The raw content as user entered it, useful when editing plurks or if you want to format the content differently. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.qualifier">
+            <summary>
+            The English qualifier, can be "says", show all: 
+            loves likes shares gives hates wants has will asks wishes was feels thinks says is : freestyle hopes needs wonders
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.qualifier_translated">
+            <summary>
+            Only set if the language is not English, will be the translated qualifier. Can be "siger" if plurk.lang is "da" (Danish). 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.content">
+            <summary>
+            The formatted content, emoticons and images will be turned into IMG tags etc. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.limited_to">
+            <summary>
+            the users who could read the plurk message
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.plurk_id">
+            <summary>
+            The unique Plurk id, used for identification of the plurk. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.owner_id">
+            <summary>
+            Who is the owner/poster of this plurk. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.response_count">
+            <summary>
+            How many responses does the plurk have. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.responses_seen">
+            <summary>
+            How many of the responses have the user read. This is automatically updated when fetching responses or marking a plurk as read. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.plurk_type">
+            <summary>
+            Specifies what type of plurk it is and if the plurk has been responded by the user. The value of plurk_type is only correct when calling getPlurks with only_responded filter (this is done for perfomance and caching reasons). 
+            plurk_type=0 //Plublic plurk
+            plurk_type=1 //Private plurk
+            plurk_type=2 //Plublic plurk (responded by the logged in user)
+            plurk_type=3 //Private plurk (responded by the logged in user)
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.user_id">
+            <summary>
+            Which timeline does this Plurk belong to. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.no_comments">
+            <summary>
+            If set to 1, then responses are disabled for this plurk.
+            If set to 2, then only friends can respond to this plurk. 
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.is_unread">
+            <summary>
+            Specifies if the plurk is read, unread or muted
+            is_unread=0 //Read
+            is_unread=1 //Unread
+            is_unread=2 //Muted
+            </summary>
+        </member>
+        <member name="P:PlurkApi.plurk.posted">
+            <summary>
+            The date this plurk was posted. 
+            </summary>
+        </member>
+        <member name="T:PlurkApi.plurks">
+            <summary>
+            a colleciton of plurk messages
+            </summary>
+        </member>
+        <member name="T:PlurkApi.lang">
+            <summary>
+            supported language
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.en">
+            <summary>
+            'English'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.pt_BR">
+            <summary>
+            'Português'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.cn">
+            <summary>
+            '中文 (中国)'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ca">
+            <summary>
+            'Català'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.el">
+            <summary>
+            'Ελληνικά'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.dk">
+            <summary>
+            'Dansk'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.de">
+            <summary>
+            'Deutsch'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.es">
+            <summary>
+            'Español'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.sv">
+            <summary>
+            'Svenska'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.nb">
+            <summary>
+            'Norsk bokmål'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.hi">
+            <summary>
+            'Hindi'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ro">
+            <summary>
+            'Română'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.hr">
+            <summary>
+            'Hrvatski'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.fr">
+            <summary>
+            'Français'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ru">
+            <summary>
+            'Pусский'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.it">
+            <summary>
+            'Italiano '
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ja">
+            <summary>
+            '日本語'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.he">
+            <summary>
+            'עברית'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.hu">
+            <summary>
+            'Magyar'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ne">
+            <summary>
+            'Nederlands'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.th">
+            <summary>
+            'ไทย'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ta_fp">
+            <summary>
+            'Filipino'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.in">
+            <summary>
+            'Bahasa Indonesia'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.pl">
+            <summary>
+            'Polski'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ar">
+            <summary>
+            'العربية'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.fi">
+            <summary>
+            'Finnish'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.tr_ch">
+            <summary>
+            '中文 (繁體中文)'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.tr">
+            <summary>
+            'Türkçe'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.ga">
+            <summary>
+            'Gaeilge'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.sk">
+            <summary>
+            'Slovenský'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.uk">
+            <summary>
+            'українська'
+            </summary>
+        </member>
+        <member name="F:PlurkApi.lang.fa">
+            <summary>
+            'فارسی
+            </summary>
+        </member>
+    </members>
+</doc>
